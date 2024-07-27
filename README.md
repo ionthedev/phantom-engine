@@ -5,7 +5,6 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/Status-in%20development-red.svg">
-  <img src="https://img.shields.io/badge/Language-C++-blue.svg">
   <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/ionthedev/phantom-engine">
   <img alt="GitHub code size in bytes" src="https://img.shields.io/github/languages/code-size/ionthedev/phantom-engine">
   <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/ionthedev/phantom-engine">
