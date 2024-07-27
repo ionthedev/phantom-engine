@@ -16,9 +16,9 @@ Currently it does not have a GUI and won't have one for a long time. So in it's 
 
 ## Libraries
 Currently we are only using the following
-- Raylib
-- Imgui
-- rlImGui
+- [Raylib](https://github.com/raysan5/raylib?tab=Zlib-1-ov-file#readme)
+- [Imgui-Docking](https://github.com/ZephyrWolf/imgui-docking)
+- [rlImGui](https://github.com/raylib-extras/rlImGui)
 
 ## How to Install
 At the moment the repository is in being built, as is the engine. But when the time comes for it to be used, run the fun little installer application for your OS
