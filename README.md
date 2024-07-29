@@ -1,6 +1,8 @@
 <p align="center"><img width=35% src="https://github.com/ionthedev/phantom-engine/blob/main/repo/logo_medium.png"></p>
 
 
+
+
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 <p align="center">
@@ -11,6 +13,7 @@
   <img alt="GitHub Actions Workflow Status" src="https://img.shields.io/github/actions/workflow/status/ionthedev/phantom-engine/cmake-multi-platform.yml">
 
 </p>
+<p align="center"> NOTICE: The build status badge on the right may say build failed, that is due to still learning how to build github action workflows.</p>
 
 ## Introduction
 The Phantom Engine is a game engine aimed at making retro aesthetic games. Currently it's being developed along side [Fear The Crow](https://github.com/ionthedev/Fear-the-Crow), a quake styled shooter game.
@@ -23,5 +26,8 @@ Currently we are only using the following
 - [rlImGui](https://github.com/raylib-extras/rlImGui)
 
 ## How to Install
-At the moment the repository is in being built, as is the engine. But when the time comes for it to be used, run the fun little installer application for your OS
+The setup for the engine is the same as Raylib's setup.
 
+Windows: https://github.com/raysan5/raylib/wiki/Working-on-Windows
+Linux: https://github.com/raysan5/raylib/wiki/Working-on-GNU-Linux
+MacOS: https://github.com/raysan5/raylib/wiki/Working-on-macOS
