@@ -28,6 +28,6 @@ Currently we are only using the following
 ## How to Install
 The setup for the engine is the same as Raylib's setup.
 
-Windows: https://github.com/raysan5/raylib/wiki/Working-on-Windows
-Linux: https://github.com/raysan5/raylib/wiki/Working-on-GNU-Linux
-MacOS: https://github.com/raysan5/raylib/wiki/Working-on-macOS
+- Windows: https://github.com/raysan5/raylib/wiki/Working-on-Windows
+- Linux: https://github.com/raysan5/raylib/wiki/Working-on-GNU-Linux
+- MacOS: https://github.com/raysan5/raylib/wiki/Working-on-macOS
