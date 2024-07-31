@@ -28,11 +28,6 @@ jobs:
       with:
         vs-version: 'latest'
 
-    - name: Set up CMake
-      uses: cmake/setup-cmake@v3
-      with:
-        cmake-version: '3.24' # Set this to your desired CMake version
-
     - name: Configure CMake
       run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -G "Ninja"
 
