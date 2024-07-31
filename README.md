@@ -12,7 +12,7 @@
   <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/ionthedev/phantom-engine">
 </p>
 
-<p align="center">
+<p>
 
 [![Build - Linux](https://github.com/ionthedev/phantom-engine/actions/workflows/build_linux.yml/badge.svg?branch=main)](https://github.com/ionthedev/phantom-engine/actions/workflows/build_linux.yml) [![Build - Windows](https://github.com/ionthedev/phantom-engine/actions/workflows/build_windows.yml/badge.svg)](https://github.com/ionthedev/phantom-engine/actions/workflows/build_windows.yml)
 </p>
