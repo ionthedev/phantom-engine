@@ -10,14 +10,10 @@
   <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/ionthedev/phantom-engine">
   <img alt="GitHub code size in bytes" src="https://img.shields.io/github/languages/code-size/ionthedev/phantom-engine">
   <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/ionthedev/phantom-engine">
-  [![Build - Linux](https://github.com/ionthedev/phantom-engine/actions/workflows/build_linux.yml/badge.svg?branch=main)](https://github.com/ionthedev/phantom-engine/actions/workflows/build_linux.yml)
 </p>
 
 Build Status
-| Operating System    | Status |
-| -------- | ------- |
-| Windows  | <img alt="GitHub Actions Workflow Status" src="https://img.shields.io/github/actions/workflow/status/ionthedev/phantom-engine/build_windows.yml"> |
-| Linux | <img alt="GitHub Actions Workflow Status" src="https://img.shields.io/github/actions/workflow/status/ionthedev/phantom-engine/build_linux.yml"> |
+[![Build - Linux](https://github.com/ionthedev/phantom-engine/actions/workflows/build_linux.yml/badge.svg?branch=main)](https://github.com/ionthedev/phantom-engine/actions/workflows/build_linux.yml)
 
 ## Introduction
 The Phantom Engine is a game engine aimed at making retro aesthetic games. Currently it's being developed along side [Fear The Crow](https://github.com/ionthedev/Fear-the-Crow), a quake styled shooter game.
