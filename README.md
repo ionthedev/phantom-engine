@@ -12,10 +12,6 @@
   <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/ionthedev/phantom-engine">
 </p>
 
-<p align="center">
-  [![Build - Linux](https://github.com/ionthedev/phantom-engine/actions/workflows/build_linux.yml/badge.svg?branch=main)](https://github.com/ionthedev/phantom-engine/actions/workflows/build_linux.yml) 
-  [![Build - Windows](https://github.com/ionthedev/phantom-engine/actions/workflows/build_windows.yml/badge.svg)](https://github.com/ionthedev/phantom-engine/actions/workflows/build_windows.yml)
-</p>
 
 ## Introduction
 The Phantom Engine is a game engine aimed at making retro aesthetic games. Currently it's being developed along side [Fear The Crow](https://github.com/ionthedev/Fear-the-Crow), a quake styled shooter game.
@@ -34,9 +30,10 @@ Currently we are only using the following
 - [glm](https://github.com/g-truc/glm) OpenGL Mathematics 
 - [stb image and typeface](https://github.com/nothings/stb) 
 - [enet](https://github.com/zpl-c/enet/) Included but not implemented
-## How to Install
-The setup for the engine is the same as Raylib's setup.
 
-- Windows: https://github.com/raysan5/raylib/wiki/Working-on-Windows
-- Linux: https://github.com/raysan5/raylib/wiki/Working-on-GNU-Linux
-- MacOS: https://github.com/raysan5/raylib/wiki/Working-on-macOS
+
+## Build Status
+
+  [![Build - Linux](https://github.com/ionthedev/phantom-engine/actions/workflows/build_linux.yml/badge.svg?branch=main)](https://github.com/ionthedev/phantom-engine/actions/workflows/build_linux.yml) 
+  [![Build - Windows](https://github.com/ionthedev/phantom-engine/actions/workflows/build_windows.yml/badge.svg)](https://github.com/ionthedev/phantom-engine/actions/workflows/build_windows.yml)
+
