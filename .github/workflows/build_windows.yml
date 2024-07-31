@@ -5,10 +5,12 @@ on:
     branches: [ "main" ]
     paths-ignore:
       - "**/README.md"
+      - "build_linux.yml"
   pull_request:
     branches: [ "main" ]
     paths-ignore:
       - "**/README.md"
+      - "build_linux.yml"
 
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
@@ -21,16 +23,16 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - name: Set up dependencies for Windows
-      run: |
-        choco install cmake --installargs 'ADD_CMAKE_TO_PATH=System' -y
-        choco install ninja -y
-        # Installing Visual Studio Build Tools is optional if Ninja is sufficient
-        choco install visualstudio2022-build-tools --package-parameters "--add Microsoft.VisualStudio.Workload.VCTools --includeRecommended --includeOptional" -y
+    - name: Set up Visual Studio Build Tools
+      uses: microsoft/setup-msbuild@v1
+      with:
+        vs-version: 'latest'
 
-    - name: Verify Ninja Installation
-      run: ninja --version
-  
+    - name: Set up CMake
+      uses: cmake/setup-cmake@v3
+      with:
+        cmake-version: '3.24' # Set this to your desired CMake version
+
     - name: Configure CMake
       run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -G "Ninja"
 
