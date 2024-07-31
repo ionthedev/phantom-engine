@@ -1,5 +1,5 @@
 # This starter workflow is for a CMake project running on Windows.
-name: Build - Linux
+name: Build - Windows
 
 on:
   push:
