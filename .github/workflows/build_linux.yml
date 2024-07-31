@@ -7,12 +7,12 @@ on:
     branches: [ "main" ]
     paths-ignore:
       - "**/README.md"
-      - "build_windows.yml"
+      - "**/.github/workflows/build_windows.yml"
   pull_request:
     branches: [ "main" ]
     paths-ignore:
       - "**/README.md"
-      - "build_windows.yml"
+      - "**/.github/workflows/build_windows.yml"
 
 
 env:
