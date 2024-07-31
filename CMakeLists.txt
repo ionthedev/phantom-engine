@@ -35,7 +35,10 @@ add_subdirectory(src/thirdparty/glm)			#math
 add_subdirectory(src/thirdparty/imgui-docking)		#ui
 add_subdirectory(src/thirdparty/gl2d)			#rendering
 add_subdirectory(src/thirdparty/bullet3)			#physics
-
+include_directories("${CMAKE_PROJECT_NAME}" PUBLIC "src/thirdparty/bullet3/src")
+message("Bullet BUILD: ${TD_BUILD_SETTING} // ${CMAKE_BUILD_TYPE}")
+set(CMAKE_BUILD_TYPE ${TD_BUILD_SETTING})
+message("Backto BUILD: ${TD_BUILD_SETTING} // ${CMAKE_BUILD_TYPE}")
 
 # MY_SOURCES is defined to be a list of all the source files for my game
 # DON'T ADD THE SOURCES BY HAND, they are already added with this macro
@@ -80,11 +83,10 @@ endif()
 target_include_directories("${CMAKE_PROJECT_NAME}" PUBLIC "src/include/")
 
 
-
 #target_link_libraries("${CMAKE_PROJECT_NAME}" PRIVATE glm
 #	glad stb_image stb_truetype gl2d imgui enet)
 
 #enet not working yet on linux for some reason
 target_link_libraries("${CMAKE_PROJECT_NAME}" PRIVATE glm
-        glad stb_image stb_truetype gl2d imgui SDL2-static Bullet3Common)
+        glad stb_image stb_truetype gl2d imgui SDL2-static ${BULLET_LIBRARIES})
 

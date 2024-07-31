@@ -14,6 +14,7 @@
 
 int main(int argc, char *argv[])
 {
+
 	// Initialize SDL
 	if (SDL_Init(SDL_INIT_VIDEO) != 0)
 	{
@@ -23,6 +24,7 @@ int main(int argc, char *argv[])
 
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
+
 
 #ifdef __APPLE__
 	// apple moment...
