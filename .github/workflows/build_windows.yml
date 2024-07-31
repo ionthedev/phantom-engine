@@ -5,12 +5,12 @@ on:
     branches: [ "main" ]
     paths-ignore:
       - "**/README.md"
-      - "build_linux.yml"
+      - "**/.github/workflows/build_linux.yml"
   pull_request:
     branches: [ "main" ]
     paths-ignore:
       - "**/README.md"
-      - "build_linux.yml"
+      - "**/.github/workflows/build_linux.yml"
 
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
