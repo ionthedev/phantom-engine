@@ -10,7 +10,7 @@
   <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/ionthedev/phantom-engine">
   <img alt="GitHub code size in bytes" src="https://img.shields.io/github/languages/code-size/ionthedev/phantom-engine">
   <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/ionthedev/phantom-engine">
-  <img alt="GitHub Actions Workflow Status" src="https://img.shields.io/github/actions/workflow/status/ionthedev/phantom-engine/cmake-multi-platform.yml">
+  <img alt="GitHub Actions Workflow Status" src="https://img.shields.io/github/actions/workflow/status/ionthedev/phantom-engine/build_linux.yml">
 
 </p>
 <p align="center"> NOTICE: The build status badge on the right may say build failed, that is due to still learning how to build github action workflows.</p>
