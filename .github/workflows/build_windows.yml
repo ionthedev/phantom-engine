@@ -27,8 +27,8 @@ jobs:
     - name: Set up dependencies for Windows
       if: runner.os == 'Windows'
       run: |
-        choco install cmake --installargs 'ADD_CMAKE_TO_PATH=System' --yes
-        choco install ninja --yes
+        choco install cmake --installargs 'ADD_CMAKE_TO_PATH=System' -y
+        choco install ninja -y
 
     - name: Build
       run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
