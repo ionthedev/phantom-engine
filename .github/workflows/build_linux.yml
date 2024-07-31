@@ -7,10 +7,13 @@ on:
     branches: [ "main" ]
     paths-ignore:
       - "**/README.md"
+      - "build_windows.yml"
   pull_request:
     branches: [ "main" ]
     paths-ignore:
       - "**/README.md"
+      - "build_windows.yml"
+
 
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
