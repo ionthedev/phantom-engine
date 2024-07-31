@@ -21,14 +21,11 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - name: Configure CMake
-      run: cmake -B ${{github.workspace}}/build -G "Ninja" -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
-
     - name: Set up dependencies for Windows
-      if: runner.os == 'Windows'
-      run: |
-        choco install cmake --installargs 'ADD_CMAKE_TO_PATH=System' -y
-        choco install ninja -y
+      run: choco install cmake --installargs 'ADD_CMAKE_TO_PATH=System' --yes
+
+    - name: Configure CMake
+      run: cmake -B ${{github.workspace}}/build -G "Visual Studio 16 2019" -A x64 -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
 
     - name: Build
       run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
