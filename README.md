@@ -10,6 +10,7 @@
   <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/ionthedev/phantom-engine">
   <img alt="GitHub code size in bytes" src="https://img.shields.io/github/languages/code-size/ionthedev/phantom-engine">
   <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/ionthedev/phantom-engine">
+  [![Build - Linux](https://github.com/ionthedev/phantom-engine/actions/workflows/build_linux.yml/badge.svg?branch=main)](https://github.com/ionthedev/phantom-engine/actions/workflows/build_linux.yml)
 </p>
 
 Build Status
