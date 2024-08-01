@@ -18,9 +18,11 @@ Currently it does not have a GUI and won't have one for a long time. So in it's 
 
 ## Libraries
 Currently we are only using the following
-- [Raylib](https://github.com/raysan5/raylib?tab=Zlib-1-ov-file#readme)
+- [Raylib]([https://github.com/raysan5/raylib?tab=Zlib-1-ov-file#readme](https://github.com/raysan5/raylib))
+- [Raylib-CPP](https://github.com/RobLoach/raylib-cpp)
 - [Imgui-Docking](https://github.com/ZephyrWolf/imgui-docking)
 - [rlImGui](https://github.com/raylib-extras/rlImGui)
+- [Bullet3](https://github.com/bulletphysics/bullet3)
 
 ## How to Install
 The setup for the engine is the same as Raylib's setup.
