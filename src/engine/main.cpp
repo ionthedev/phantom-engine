@@ -15,6 +15,7 @@
 int main(int argc, char *argv[])
 {
 
+
 	// Initialize SDL
 	if (SDL_Init(SDL_INIT_VIDEO) != 0)
 	{
@@ -64,6 +65,11 @@ int main(int argc, char *argv[])
 		return 1;
 	}
 
+
+
+
+
+
 	// Enable OpenGL error reporting
 	enableReportGlErrors();
 
@@ -71,11 +77,11 @@ int main(int argc, char *argv[])
 	ImGui::CreateContext();
 
 	//you can use whatever imgui theme you like!
-	imguiThemes::yellow();
+	//imguiThemes::yellow();
 	//ImGui::StyleColorsDark();
 	//imguiThemes::gray();
 	//imguiThemes::green();
-	//imguiThemes::red();
+	imguiThemes::red();
 	//imguiThemes::embraceTheDarkness();
 
 
@@ -101,6 +107,49 @@ int main(int argc, char *argv[])
 	gl2d::Renderer2D renderer2d;
 	renderer2d.create();
 
+	const char *vertexShaderSource = "#version 330 core\n"
+	"layout (location = 0) in vec3 aPos;\n"
+	"void main()\n"
+	"{\n"
+	"   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
+	"}\0";
+
+	unsigned int vertexShader;
+	vertexShader = glCreateShader(GL_VERTEX_SHADER);
+	glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
+	glCompileShader(vertexShader);
+
+	const char *fragmentShaderSource = "#version 330 core\n"
+	"out vec4 FragColor;\n"
+	"void main()\n"
+	"{\n"
+	"   FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
+	"}\0";
+
+	unsigned int fragmentShader;
+	fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
+	glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
+	glCompileShader(fragmentShader);
+
+	float vertices[] = {
+		-0.5f, -0.5f, 0.0f, 0.0f, 0.0f,};
+
+	unsigned int VBO;
+	glGenBuffers(1, &VBO);
+	glBindBuffer(GL_ARRAY_BUFFER, VBO);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+	unsigned int VAO;
+	glGenVertexArrays(1, &VAO);
+
+	unsigned int shaderProgram;
+	shaderProgram = glCreateProgram();
+	glAttachShader(shaderProgram, vertexShader);
+	glAttachShader(shaderProgram, fragmentShader);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+	glEnableVertexAttribArray(0);
+	glLinkProgram(shaderProgram);
+
 	// Main event loop
 	bool running = true;
 	while (running)
@@ -110,6 +159,8 @@ int main(int argc, char *argv[])
 
 		renderer2d.updateWindowMetrics(w, h);
 		glViewport(0, 0, w, h);
+		glClearColor(0.4f, 0.3f, 0.1f, 1.0f);
+		glClear(GL_COLOR_BUFFER_BIT);
 
 		SDL_Event event;
 		while (SDL_PollEvent(&event))
@@ -154,6 +205,11 @@ int main(int argc, char *argv[])
 
 		// testing opengl
 		renderer2d.renderRectangle({100, 100, 100, 100}, Colors_Orange);
+
+
+		glUseProgram(shaderProgram);
+		glBindVertexArray(VAO);
+		glDrawArrays(GL_TRIANGLES, 0, 3);
 		renderer2d.flush();
 
 
@@ -179,6 +235,10 @@ int main(int argc, char *argv[])
 	ImGui_ImplOpenGL3_Shutdown();
 	ImGui_ImplSDL2_Shutdown();
 	ImGui::DestroyContext();
+
+	//cleanup hello triangle
+	glDeleteShader(vertexShader);
+	glDeleteShader(fragmentShader);
 
 	// Cleanup SDL
 	SDL_DestroyWindow(window);
