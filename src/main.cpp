@@ -1,5 +1,5 @@
 
-#include "game/FearTheCrow.h"
+#include "game/YourGame.h"
 
 
 #define MAX_COLUMNS 20
@@ -14,7 +14,7 @@
 int main(void)
 {
     //Initializes game and engine loop
-    FearTheCrow game(true);
+    YourGame game(true);
 
     return 0;
 }
