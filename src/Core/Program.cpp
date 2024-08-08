@@ -3,3 +3,20 @@
 //
 
 #include "Program.h"
+
+#include <iostream>
+
+Phantom::Program::Program()
+{
+}
+
+Phantom::Program::~Program()
+{
+}
+
+void Phantom::Program::Run()
+{
+   std::cout << "The program ran";
+
+}
+

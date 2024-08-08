@@ -1,7 +1,7 @@
 
-#include "Core/Game.h"
-#include "raylib.h"
+#include "Core/Program.h"
 
+#include "PhantomEngine.h"
 
 #define MAX_COLUMNS 20
 
@@ -12,10 +12,10 @@
 //------------------------------------------------------------------------------------
 // Program main entry point
 //------------------------------------------------------------------------------------
+
 int main(void)
 {
-    //Initializes game and engine loop
-    YourGame game(true);
-
-    return 0;
+    auto game = Phantom::CreateProgram();
+    //game->Run();
+    delete game;
 }

@@ -4,12 +4,27 @@
 
 #ifndef PROGRAM_H
 #define PROGRAM_H
+#include "../PhantomEngine.h"
+
+namespace Phantom {
+
+    class Program {
+
+    public:
+        Program();
+        virtual ~Program();
+
+        static void Run();
 
 
+    };
 
-class Program {
+    static Program* CreateProgram()
+    {
+        return new Program();
+    }
 
-};
+}
 
 
 
