@@ -51,12 +51,28 @@ include_directories(
 
 
 file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS
-        "${PROJECT_SOURCE_DIR}/*.[hc]"
-        "${PROJECT_SOURCE_DIR}/*.[hc]pp")
+        "src/*.[hc]"
+        "src/*.[hc]pp"
+        "src/Core/*.[hc]"
+        "src/Core/*.[hc]pp"
+        "src/Debug/*.[hc]"
+        "src/Debug/*.[hc]pp"
+        "src/ImGui/*.[hc]"
+        "src/ImGui/*.[hc]pp"
+        "src/Math/*.[hc]"
+        "src/Math/*.[hc]pp"
+        "src/Physics/*.[hc]"
+        "src/Physics/*.[hc]pp"
+        "src/Project/*.[hc]"
+        "src/Project/*.[hc]pp"
+        "src/Scene/*.[hc]"
+        "src/Scene/*.[hc]pp"
+        "src/ThirdParty/*.[hc]"
+        "src/ThirdParty/*.[hc]pp")
 
 
 # Add source files for the engine
-add_library("${PROJECT_NAME}" SHARED "${SOURCES}")
+add_library(PhantomEngine SHARED "${SOURCES}")
 
 add_subdirectory(src/ThirdParty/imgui-docking)
 add_subdirectory(src/ThirdParty/rlImGui)
