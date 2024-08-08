@@ -49,18 +49,19 @@ include_directories(
         ${entt_SOURCE_DIR}/src
 )
 
+
+file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS
+        "${PROJECT_SOURCE_DIR}/*.[hc]"
+        "${PROJECT_SOURCE_DIR}/*.[hc]pp")
+
+
 # Add source files for the engine
-set(SOURCES
-        src/main.cpp
-        # Add all your source files here
-)
+add_library("${PROJECT_NAME}" SHARED "${SOURCES}")
 
 add_subdirectory(src/ThirdParty/imgui-docking)
 add_subdirectory(src/ThirdParty/rlImGui)
 
 
-# Create a library target for the engine
-add_library(PhantomEngine STATIC ${SOURCES})
 
 # Link the fetched libraries
 target_link_libraries(${PROJECT_NAME} PRIVATE
