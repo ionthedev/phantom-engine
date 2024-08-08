@@ -3,7 +3,7 @@
 //
 
 #include "PE_Core.h"
-
+#include "PhantomEngine.h"
 
 PE_Core::PE_Core(bool initialized)
 {

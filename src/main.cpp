@@ -1,5 +1,6 @@
 
-#include "game/YourGame.h"
+#include "Core/Game.h"
+#include "raylib.h"
 
 
 #define MAX_COLUMNS 20

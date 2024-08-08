@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.14)
-project(Phantom-Engine)
+project(PhantomEngine)
 
 # Set C++ standard
 set(CMAKE_CXX_STANDARD 17)
@@ -18,11 +18,11 @@ FetchContent_MakeAvailable(raylib)
 
 # Fetch and build Raylib-cpp
 FetchContent_Declare(
-        raylib-cpp
+        raylib_cpp
         GIT_REPOSITORY https://github.com/RobLoach/raylib-cpp.git
         GIT_TAG        master
 )
-FetchContent_MakeAvailable(raylib-cpp)
+FetchContent_MakeAvailable(raylib_cpp)
 
 # Fetch and build Bullet3
 FetchContent_Declare(
@@ -32,37 +32,37 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(bullet3)
 
-# Add source files
-file(GLOB_RECURSE ENGINE_SOURCES "src/engine/*.cpp")
-file(GLOB_RECURSE GAME_SOURCES "src/game/*.cpp")
-file(GLOB_RECURSE EDITOR_SOURCES "src/editor/*.cpp")
-
-
-add_subdirectory(src/thirdparty/imgui-docking)
-add_subdirectory(src/thirdparty/rlImGui)
-
-# Create the executable
-add_executable(${PROJECT_NAME}
-        src/main.cpp
-        ${ENGINE_SOURCES}
-        ${GAME_SOURCES}
-        ${EDITOR_SOURCES}
+# Fetch and build Entt
+FetchContent_Declare(
+        entt
+        GIT_REPOSITORY https://github.com/skypjack/entt.git
+        GIT_TAG        master
 )
+FetchContent_MakeAvailable(entt)
 
-# Include directories
-target_include_directories(${PROJECT_NAME} PRIVATE
+# Add include directories for the engine
+include_directories(
+        include
         ${raylib_SOURCE_DIR}/src
-        ${raylib-cpp_SOURCE_DIR}/include
-        ${raylib-cpp_SOURCE_DIR}/examples
-        ${raylib-cpp_SOURCE_DIR}/tests
+        ${raylib_cpp_SOURCE_DIR}/include
         ${bullet3_SOURCE_DIR}/src
-        ${PROJECT_SOURCE_DIR}/src/include
-        ${PROJECT_SOURCE_DIR}/src/engine
-        ${PROJECT_SOURCE_DIR}/src/game
-        ${PROJECT_SOURCE_DIR}/src/editor
+        ${entt_SOURCE_DIR}/src
 )
 
-# Link libraries
+# Add source files for the engine
+set(SOURCES
+        src/main.cpp
+        # Add all your source files here
+)
+
+add_subdirectory(src/ThirdParty/imgui-docking)
+add_subdirectory(src/ThirdParty/rlImGui)
+
+
+# Create a library target for the engine
+add_library(PhantomEngine STATIC ${SOURCES})
+
+# Link the fetched libraries
 target_link_libraries(${PROJECT_NAME} PRIVATE
         raylib
         raylib_cpp
@@ -71,4 +71,7 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
         LinearMath
         imgui
         rlimgui
+        EnTT
+
+
 )
