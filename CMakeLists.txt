@@ -14,6 +14,8 @@ if(BUILD_SHARED_LIBS)
             src/Core/EntryPoint.h
             src/Core/Application.h
             src/Core/Application.cpp
+            src/Core/Log.h
+            src/Core/Log.cpp
             # Add other source files as necessary
     )
     target_compile_definitions(PhantomEngine PRIVATE PHANTOM_ENGINE_EXPORTS)
@@ -21,7 +23,10 @@ else()
     add_library(PhantomEngine STATIC
             src/PhantomEngine.h
             src/Core/EntryPoint.h
+            src/Core/Application.h
             src/Core/Application.cpp
+            src/Core/Log.h
+            src/Core/Log.cpp
             # Add other source files as necessary
     )
 endif()
@@ -63,6 +68,13 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(raylib)
 
+FetchContent_Declare(
+        spdlog
+        https://github.com/gabime/spdlog.git
+        GIT_TAG v1.x
+)
+FetchContent_MakeAvailable(spdlog)
+
 # Include directories
 target_include_directories(PhantomEngine
         PUBLIC
@@ -70,6 +82,7 @@ target_include_directories(PhantomEngine
         ${entt_SOURCE_DIR}/src
         ${raylib_cpp_SOURCE_DIR}/include
         ${raylib_SOURCE_DIR}/src
+        ${spdlog_SOURCE_DIR}/src
         src/ThirdParty/rlImGui
         src/ThirdParty/imgui-docking/imgui
 )
@@ -88,6 +101,7 @@ target_link_libraries(PhantomEngine
         raylib_cpp
         rlimgui
         imgui
+        spdlog
 )
 
 
