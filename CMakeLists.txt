@@ -2,6 +2,32 @@
 cmake_minimum_required(VERSION 3.16)
 project(PhantomEngine)
 
+set(CMAKE_CXX_STANDARD 17)
+
+
+option(BUILD_SHARED_LIBS "Build shared libraries" ON)
+
+# Add the PhantomEngine library
+if(BUILD_SHARED_LIBS)
+    add_library(PhantomEngine SHARED
+            src/PhantomEngine.h
+            src/Core/EntryPoint.h
+            src/Core/Application.h
+            src/Core/Application.cpp
+            # Add other source files as necessary
+    )
+    target_compile_definitions(PhantomEngine PRIVATE PHANTOM_ENGINE_EXPORTS)
+else()
+    add_library(PhantomEngine STATIC
+            src/PhantomEngine.h
+            src/Core/EntryPoint.h
+            src/Core/Application.cpp
+            # Add other source files as necessary
+    )
+endif()
+
+
+
 # FetchContent configuration
 include(FetchContent)
 
@@ -38,35 +64,36 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(raylib)
 
 # Include directories
-include_directories(
+target_include_directories(PhantomEngine
+        PUBLIC
         ${bullet3_SOURCE_DIR}/src
         ${entt_SOURCE_DIR}/src
         ${raylib_cpp_SOURCE_DIR}/include
         ${raylib_SOURCE_DIR}/src
-        src/ThirdParty/rlImGui/
+        src/ThirdParty/rlImGui
         src/ThirdParty/imgui-docking/imgui
 )
 
-add_subdirectory(src/ThirdParty/imgui-docking)
-add_subdirectory(src/ThirdParty/rlImGui)
+# Add third-party dependencies
+add_subdirectory(${PROJECT_SOURCE_DIR}/src/ThirdParty/imgui-docking)
+add_subdirectory(${PROJECT_SOURCE_DIR}/src/ThirdParty/rlImGui)
 
-# Create PhantomEngine library
-add_library(PhantomEngine
-        src/Core/Core.h
-        src/Core/Program.cpp
-        src/Core/Program.h
-        # Add other source files as necessary
-)
-
-add_executable(Phantom_Run src/main.cpp)
 
 # Link dependencies
 target_link_libraries(PhantomEngine
-        PRIVATE
+        PUBLIC
         Bullet3Common
         EnTT::EnTT
-        raylib_cpp
         raylib
+        raylib_cpp
         rlimgui
         imgui
 )
+
+
+
+# Install headers and library
+install(TARGETS PhantomEngine DESTINATION lib)
+install(DIRECTORY src/ DESTINATION include/PhantomEngine FILES_MATCHING PATTERN "*.h")
+
+# Create executable for testing

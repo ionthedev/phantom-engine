@@ -15,5 +15,5 @@ target_sources(imgui PRIVATE
 target_include_directories(imgui PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/imgui")
 
 
-target_link_libraries(imgui PUBLIC raylib_static glfw)
+target_link_libraries(imgui PUBLIC raylib glfw)
 
