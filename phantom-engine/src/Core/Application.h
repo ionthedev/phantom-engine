@@ -4,6 +4,9 @@
 
 #ifndef APPLICATION_H
 #define APPLICATION_H
+#include "Layer.h"
+#include "LayerStack.h"
+#include "Event_System/Event.h"
 #include "PhantomPch.h"
 
 
@@ -15,11 +18,16 @@ namespace Phantom
 
 class Application {
 
-    public:
+public:
     Application();
     virtual ~Application();
 
-    void Run();
+    virtual void Run();
+    void MakeLayer(Layer* layer);
+    void MakeOverlay(Layer* layer);
+private:
+
+    LayerStack m_LayerStack;
 
 };
 

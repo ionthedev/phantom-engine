@@ -1,7 +1,19 @@
 # PhantomEngine/CMakeLists.txt
 cmake_minimum_required(VERSION 3.16)
-add_library(PhantomEngine STATIC
-        src/Core/Log.cpp)
+add_library(PhantomEngine SHARED
+        src/Core/Log.cpp
+        src/Core/Layer.cpp
+        src/Core/Application.cpp
+        src/Core/Application.h
+        src/Core/Layer.h
+        src/Core/LayerStack.cpp
+        src/Core/LayerStack.h
+        src/Core/Window.h
+        src/Core/Event_System/Event.h
+        src/Core/Event_System/ApplicationEvent.h
+        src/Core/Event_System/KeyEvent.h
+        src/Core/Event_System/MouseEvent.h
+        src/Core/Assert.h)
 add_library(PH::Lib ALIAS PhantomEngine)
 
 
@@ -130,6 +142,7 @@ target_link_libraries(PhantomEngine
         raylib_cpp
         rlimgui
         imgui
-        spdlog
+        spdlog::spdlog
+        spdlog_header_only
 )
 
