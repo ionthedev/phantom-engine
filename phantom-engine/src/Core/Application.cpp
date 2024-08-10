@@ -19,7 +19,7 @@ Phantom::Application::~Application()
 void Phantom::Application::Run()
 {
     WindowResizeEvent e (1280, 720);
-    PH_INFO(e.ToString());
+    PH_INFO(e);
 
 
 }
