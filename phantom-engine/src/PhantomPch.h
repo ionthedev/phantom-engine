@@ -3,8 +3,8 @@
 //
 
 
-#ifndef PHANTOMEPCH_H
-#define PHANTOMEPCH_H
+#ifndef PHANTOMPCH_H
+#define PHANTOMPCH_H
 
 
 
@@ -14,11 +14,9 @@
 #include <iomanip>
 #include <string>
 #include <functional>
-
 #include <thread>
 #include <mutex>
 #include <sstream>
-
 #include "imgui.h"
 #include "rlImGui.h"
 #include "raylib.h"
@@ -28,4 +26,11 @@
 #include "Core/Application.h"
 #include "Math/PHMath.h"
 
-#endif //PHANTOMEPCH_H
+// =============================== [ PHYSICS ] =====================================
+#include <Jolt/Jolt.h>
+#include <Jolt/Physics/Character/CharacterBase.h>
+#include <Jolt/Physics/PhysicsSystem.h>
+#include <Jolt/Physics/PhysicsScene.h>
+#include <Jolt/Physics/PhysicsSettings.h>
+
+#endif //PHANTOMPCH_H

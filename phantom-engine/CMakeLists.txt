@@ -9,11 +9,13 @@ add_library(PhantomEngine SHARED
         src/Core/LayerStack.cpp
         src/Core/LayerStack.h
         src/Core/Window.h
-        src/Core/Event_System/Event.h
-        src/Core/Event_System/ApplicationEvent.h
-        src/Core/Event_System/KeyEvent.h
-        src/Core/Event_System/MouseEvent.h
-        src/Core/Assert.h)
+        src/Event_System/Event.h
+        src/Event_System/ApplicationEvent.h
+        src/Event_System/KeyEvent.h
+        src/Event_System/MouseEvent.h
+        src/Core/Assert.h
+        src/Core/WindowBase.cpp
+        src/Core/WindowBase.h)
 add_library(PH::Lib ALIAS PhantomEngine)
 
 
@@ -62,11 +64,11 @@ include(FetchContent)
 
 # Fetch Bullet3
 FetchContent_Declare(
-        bullet3
-        GIT_REPOSITORY https://github.com/bulletphysics/bullet3.git
+        JoltPhysics
+        GIT_REPOSITORY https://github.com/jrouwe/JoltPhysics.git
         GIT_TAG master
 )
-FetchContent_MakeAvailable(bullet3)
+FetchContent_MakeAvailable(JoltPhysics)
 
 # Fetch EnTT
 FetchContent_Declare(
@@ -106,7 +108,7 @@ FetchContent_MakeAvailable(spdlog)
 target_include_directories(PhantomEngine
         PUBLIC
         src
-        ${bullet3_SOURCE_DIR}/src
+        ${joltphysics_SOURCE_DIR}
         ${entt_SOURCE_DIR}/src
         ${raylib_cpp_SOURCE_DIR}/include
         ${raylib_SOURCE_DIR}/src
@@ -136,13 +138,14 @@ set_target_properties(
 # Link dependencies
 target_link_libraries(PhantomEngine
         PUBLIC
-        Bullet3Common
         EnTT::EnTT
         raylib
         raylib_cpp
         rlimgui
         imgui
         spdlog::spdlog
-        spdlog_header_only
+        Jolt
+
+
 )
 

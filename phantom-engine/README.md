@@ -22,7 +22,7 @@ Currently we are only using the following
 - [Raylib-CPP](https://github.com/RobLoach/raylib-cpp)
 - [Imgui-Docking](https://github.com/ZephyrWolf/imgui-docking)
 - [rlImGui](https://github.com/raylib-extras/rlImGui)
-- [Bullet3](https://github.com/bulletphysics/bullet3)
+- [JoltPhysics](https://github.com/jrouwe/JoltPhysics)
 
 ## How to Install
 The setup for the engine is the same as Raylib's setup.
