@@ -13,8 +13,7 @@ add_library(PhantomEngine SHARED
         src/Event_System/KeyEvent.h
         src/Event_System/MouseEvent.h
         src/Core/Assert.h
-        src/Core/WindowBase.cpp
-        src/Core/WindowBase.h)
+        src/Core/Window.cpp)
 add_library(PH::Lib ALIAS PhantomEngine)
 
 
@@ -78,18 +77,11 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(entt)
 
-# Fetch Raylib-cpp
-FetchContent_Declare(
-        raylib_cpp
-        GIT_REPOSITORY https://github.com/RobLoach/raylib-cpp.git
-        GIT_TAG master
-)
-FetchContent_MakeAvailable(raylib_cpp)
 
 # Fetch Raylib
 FetchContent_Declare(
         raylib
-        GIT_REPOSITORY https://github.com/raysan5/raylib.git
+        GIT_REPOSITORY https://github.com/raylib-extras/raylib_multi_window_experimental.git
         GIT_TAG master
 )
 FetchContent_MakeAvailable(raylib)
@@ -110,7 +102,6 @@ target_include_directories(PhantomEngine
         src
         ${jolt_SOURCE_DIR}/Build
         ${entt_SOURCE_DIR}/src
-        ${raylib_cpp_SOURCE_DIR}/include
         ${raylib_SOURCE_DIR}/src
         ${spdlog_SOURCE_DIR}/src
         src/ThirdParty/rlImGui
@@ -140,7 +131,6 @@ target_link_libraries(PhantomEngine
         PUBLIC
         EnTT::EnTT
         raylib
-        raylib_cpp
         rlimgui
         imgui
         spdlog::spdlog

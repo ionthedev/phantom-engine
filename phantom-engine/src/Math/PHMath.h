@@ -113,7 +113,7 @@ namespace Phantom {
         char* charArray = new char[vecString.length() + 1];
 
         // Copy the string to the char array
-        std::strcpy(charArray, vecString.c_str());
+        strcpy(charArray, vecString.c_str());
 
         return charArray;
     }
@@ -126,7 +126,7 @@ namespace Phantom {
         char* charArray = new char[vecString.length() + 1];
 
         // Copy the string to the char array
-        std::strcpy(charArray, vecString.c_str());
+        strcpy(charArray, vecString.c_str());
 
         return charArray;
     }

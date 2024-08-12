@@ -6,6 +6,7 @@
 #define APPLICATION_H
 #include "Layer.h"
 #include "LayerStack.h"
+#include "Window.h"
 #include "Event_System/Event.h"
 #include "PhantomPch.h"
 

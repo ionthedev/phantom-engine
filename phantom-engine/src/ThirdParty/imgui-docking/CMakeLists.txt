@@ -1,7 +1,8 @@
 cmake_minimum_required(VERSION 3.1)
 project(imgui)
 
-add_library(imgui)
+add_library(imgui
+        imgui/imguiThemes.h)
 target_sources(imgui PRIVATE 
 "${CMAKE_CURRENT_SOURCE_DIR}/imgui/imgui.cpp"
 "${CMAKE_CURRENT_SOURCE_DIR}/imgui/imgui_demo.cpp"

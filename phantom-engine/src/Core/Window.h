@@ -15,6 +15,12 @@ namespace Phantom {
         std::string Title;
         unsigned int Width;
         unsigned int Height;
+        unsigned int ID;
+        Texture2D texture;
+        Vector2 position;
+        Vector2 velocity;
+        bool open;
+        bool focused;
 
         WindowSettings(const std::string& title = "PhantomEngine", unsigned int width = 1280, unsigned int height = 720) : Title(title), Width(width), Height(height){}
     };
@@ -22,13 +28,12 @@ namespace Phantom {
 class PHANTOM_API Window {
 public:
     using EventCallbackFn = std::function<void(Event&)>;
+    Window(const WindowSettings& settings);
+    ~Window() {}
 
-    virtual ~Window() {}
-
-    virtual void OnUpdate() = 0;
-
-    virtual unsigned int GetWidth() const = 0;
-    virtual unsigned int GetHeight() const = 0;
+    void OnUpdate();
+    unsigned int GetWidth();
+    unsigned int GetHeight();
 
     virtual void SetEventCallback(const EventCallbackFn& callback_fn) = 0;
     static Window* Create(const WindowSettings& settings = WindowSettings());

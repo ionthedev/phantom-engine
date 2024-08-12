@@ -22,8 +22,6 @@
 #include "raylib.h"
 #include "raymath.h"
 #include "rcamera.h"
-#include "Core/Core.h"
-#include "Core/Application.h"
 #include "Math/PHMath.h"
 
 
