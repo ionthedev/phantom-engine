@@ -1,5 +1,4 @@
-# PhantomEngine/CMakeLists.txt
-cmake_minimum_required(VERSION 3.16)
+cmake_minimum_required(VERSION 3.19)
 add_library(PhantomEngine SHARED
         src/Core/Log.cpp
         src/Core/Layer.cpp
@@ -64,11 +63,12 @@ include(FetchContent)
 
 # Fetch Bullet3
 FetchContent_Declare(
-        JoltPhysics
+        Jolt
         GIT_REPOSITORY https://github.com/jrouwe/JoltPhysics.git
         GIT_TAG master
+        SOURCE_SUBDIR "Build"
 )
-FetchContent_MakeAvailable(JoltPhysics)
+FetchContent_MakeAvailable(Jolt)
 
 # Fetch EnTT
 FetchContent_Declare(
@@ -108,7 +108,7 @@ FetchContent_MakeAvailable(spdlog)
 target_include_directories(PhantomEngine
         PUBLIC
         src
-        ${joltphysics_SOURCE_DIR}
+        ${jolt_SOURCE_DIR}/Build
         ${entt_SOURCE_DIR}/src
         ${raylib_cpp_SOURCE_DIR}/include
         ${raylib_SOURCE_DIR}/src
@@ -145,6 +145,9 @@ target_link_libraries(PhantomEngine
         imgui
         spdlog::spdlog
         Jolt
+        #Jolt::Jolt
+
+
 
 
 )

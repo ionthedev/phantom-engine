@@ -26,11 +26,5 @@
 #include "Core/Application.h"
 #include "Math/PHMath.h"
 
-// =============================== [ PHYSICS ] =====================================
-#include <Jolt/Jolt.h>
-#include <Jolt/Physics/Character/CharacterBase.h>
-#include <Jolt/Physics/PhysicsSystem.h>
-#include <Jolt/Physics/PhysicsScene.h>
-#include <Jolt/Physics/PhysicsSettings.h>
 
 #endif //PHANTOMPCH_H

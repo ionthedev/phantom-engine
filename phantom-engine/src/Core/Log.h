@@ -20,7 +20,7 @@ namespace Phantom {
 		static std::shared_ptr<spdlog::logger> s_CoreLogger;
 		static std::shared_ptr<spdlog::logger> s_ClientLogger;
 
-		JPH::PhysicsSystem physics_system;
+		//JPH::PhysicsSystem physics_system;
 	};
 
 }

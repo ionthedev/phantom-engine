@@ -8,8 +8,13 @@
 #define CORE_H
 
 #include <filesystem>
+
+// =============================== [ PHYSICS ] =====================================
 #include <Jolt/Jolt.h>
+#include <Jolt/Physics/Character/CharacterBase.h>
 #include <Jolt/Physics/PhysicsSystem.h>
+#include <Jolt/Physics/PhysicsScene.h>
+#include <Jolt/Physics/PhysicsSettings.h>
 
 // Define export/import macros
 #if defined(_WIN32) || defined(_WIN64)
