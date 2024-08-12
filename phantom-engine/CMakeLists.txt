@@ -1,5 +1,12 @@
 cmake_minimum_required(VERSION 3.19)
+
+
+
+file(GLOB_RECURSE RENDERER_SOURCES CONFIGURE_DEPENDS "src/Renderer/*.cpp")
+file(GLOB_RECURSE RENDERER_HEADERS CONFIGURE_DEPENDS "src/Renderer/*.h")
+
 add_library(PhantomEngine SHARED
+        src/Core/Core.h
         src/Core/Log.cpp
         src/Core/Layer.cpp
         src/Core/Application.cpp
@@ -14,49 +21,17 @@ add_library(PhantomEngine SHARED
         src/Event_System/MouseEvent.h
         src/Core/Assert.h
         src/Core/WindowBase.cpp
-        src/Core/WindowBase.h)
+        src/Core/WindowBase.h
+        ${RENDERER_SOURCES}
+        ${RENDERER_HEADERS}
+        src/Core/Window.cpp)
 add_library(PH::Lib ALIAS PhantomEngine)
-
-
-
-option(BUILD_SHARED_LIBS "Build shared libraries" ON)
-
-
 
 target_sources(
         PhantomEngine
         PRIVATE
         "src/Core/Application.cpp"
 )
-
-
-#[[
-# Add the PhantomEngine library
-if(BUILD_SHARED_LIBS)
-    add_library(PhantomEngine SHARED
-            src/PhantomPch.h
-            src/Core/EntryPoint.h
-            src/Core/Application.h
-            src/Core/Application.cpp
-            src/Core/Log.h
-            src/Core/Log.cpp
-            # Add other source files as necessary
-    )
-    target_compile_definitions(PhantomEngine PUBLIC PHANTOM_ENGINE_EXPORTS)
-else()
-    add_library(PhantomEngine STATIC
-            src/PhantomPch.h
-            src/Core/EntryPoint.h
-            src/Core/Application.h
-            src/Core/Application.cpp
-            src/Core/Log.h
-            src/Core/Log.cpp
-            # Add other source files as necessary
-    )
-endif()
-]]
-
-#-----------------------------------------------------------------------------------------------------
 
 # FetchContent configuration
 include(FetchContent)
@@ -78,22 +53,6 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(entt)
 
-# Fetch Raylib-cpp
-FetchContent_Declare(
-        raylib_cpp
-        GIT_REPOSITORY https://github.com/RobLoach/raylib-cpp.git
-        GIT_TAG master
-)
-FetchContent_MakeAvailable(raylib_cpp)
-
-# Fetch Raylib
-FetchContent_Declare(
-        raylib
-        GIT_REPOSITORY https://github.com/raysan5/raylib.git
-        GIT_TAG master
-)
-FetchContent_MakeAvailable(raylib)
-
 FetchContent_Declare(
         spdlog
         GIT_REPOSITORY https://github.com/gabime/spdlog.git
@@ -102,6 +61,8 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(spdlog)
 
 #-----------------------------------------------------------------------------------------------------
+
+
 
 
 # Include directories
@@ -118,8 +79,46 @@ target_include_directories(PhantomEngine
 )
 
 # Add third-party dependencies
+add_subdirectory(src/ThirdParty/SDL-release-2.30.5)
+add_subdirectory(src/ThirdParty/glad)
+add_subdirectory(src/ThirdParty/stb_image)
+add_subdirectory(src/ThirdParty/stb_truetype)
+add_subdirectory(src/ThirdParty/glm)
 add_subdirectory(src/ThirdParty/imgui-docking)
-add_subdirectory(src/ThirdParty/rlImGui)
+add_subdirectory(src/ThirdParty/gl2d)
+
+
+set_property(TARGET PhantomEngine PROPERTY CXX_STANDARD 17)
+
+
+target_compile_definitions(PhantomEngine PUBLIC GLFW_INCLUDE_NONE=1)
+
+if(PRODUCTION_BUILD)
+    # setup the ASSETS_PATH macro to be in the root folder of your exe
+    target_compile_definitions(PhantomEngine PUBLIC RESOURCES_PATH="./resources/")
+
+    target_compile_definitions(PhantomEngine PUBLIC PRODUCTION_BUILD=1)
+
+else()
+    # This is useful to get an ASSETS_PATH in your IDE during development
+    target_compile_definitions(PhantomEngine PUBLIC RESOURCES_PATH="${CMAKE_CURRENT_SOURCE_DIR}/resources/")
+    target_compile_definitions(PhantomEngine PUBLIC PRODUCTION_BUILD=0)
+
+endif()
+
+
+
+if(MSVC) # If using the VS compiler...
+
+    target_compile_definitions(PhantomEngine PUBLIC _CRT_SECURE_NO_WARNINGS)
+
+    #add this line if you want to remove the console!
+    #set_target_properties(PhantomEngine PROPERTIES LINK_FLAGS "/SUBSYSTEM:WINDOWS /ENTRY:mainCRTStartup") #no console
+
+    #set_property(TARGET PhantomEngine PROPERTY MSVC_RUNTIME_LIBRARY "MultiThreadedDebug<$<CONFIG:Debug>:Debug>")
+    #set_property(TARGET PhantomEngine PROPERTY MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Release>:Release>")
+
+endif()
 
 target_precompile_headers(
         PhantomEngine
@@ -139,13 +138,15 @@ set_target_properties(
 target_link_libraries(PhantomEngine
         PUBLIC
         EnTT::EnTT
-        raylib
-        raylib_cpp
-        rlimgui
         imgui
         spdlog::spdlog
         Jolt
-        #Jolt::Jolt
+        SDL2-static
+        stb_image
+        stb_truetype
+        glad
+        glm
+        gl2d
 
 
 

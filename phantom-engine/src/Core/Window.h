@@ -7,6 +7,7 @@
 
 #include <Core/Core.h>
 #include <Event_System/Event.h>
+#include <SDL2/SDL.h>
 
 namespace Phantom {
 
@@ -31,7 +32,10 @@ public:
     virtual unsigned int GetHeight() const = 0;
 
     virtual void SetEventCallback(const EventCallbackFn& callback_fn) = 0;
-    static Window* Create(const WindowSettings& settings = WindowSettings());
+    static Scope<Window>  Create(const WindowSettings& settings = WindowSettings());
+
+
+
 
 
 

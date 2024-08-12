@@ -37,7 +37,6 @@
 #include <GLUT/glut.h>
 #else
 #include <GL/freeglut.h>
-#include "GL/"
 #endif
 
 #ifdef _MSC_VER

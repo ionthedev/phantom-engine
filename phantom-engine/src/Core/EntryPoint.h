@@ -6,6 +6,7 @@
 #define ENTRYPOINT_H
 #include "Application.h"
 #include "Log.h"
+#include "Window.h"
 
 
 extern Phantom::Application* Phantom::CreateApplication();
@@ -17,6 +18,7 @@ int main(int argc, char** argv) {
     PH_INFO("Hello!");
 
     auto program = Phantom::CreateApplication();  // Ensure usage of the Phantom namespace
+
     program->Run();
     delete program;
     return 0;

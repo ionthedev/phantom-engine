@@ -10,6 +10,7 @@ namespace Phantom {
 
 class WindowBase : public Window {
 public:
+    WindowBase(const WindowSettings& settings);
 
     ~WindowBase();
 
@@ -24,6 +25,7 @@ public:
 
 private:
 
+    SDL_Window* m_Window;
 
     struct WindowData
     {
