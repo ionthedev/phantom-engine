@@ -7,13 +7,11 @@ add_library(PhantomEngine SHARED
         src/Core/Layer.h
         src/Core/LayerStack.cpp
         src/Core/LayerStack.h
-        src/Core/Window.h
         src/Event_System/Event.h
         src/Event_System/ApplicationEvent.h
         src/Event_System/KeyEvent.h
         src/Event_System/MouseEvent.h
-        src/Core/Assert.h
-        src/Core/Window.cpp)
+        src/Core/Assert.h)
 add_library(PH::Lib ALIAS PhantomEngine)
 
 

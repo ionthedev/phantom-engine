@@ -12,6 +12,7 @@
 
 Phantom::Application::Application()
 {
+
 }
 
 Phantom::Application::~Application()
@@ -20,10 +21,7 @@ Phantom::Application::~Application()
 
 void Phantom::Application::Run() // Literally just int maint()
 {
-    //rlViewport(viewportPos.x, viewportPos.y, viewportSize.x, viewportSize.y);
 
-    /*WindowResizeEvent e (1280, 720);
-    PH_INFO(e);*/
 
 }
 
@@ -36,3 +34,4 @@ void Phantom::Application::MakeOverlay(Layer *layer)
 {
     m_LayerStack.MakeOverlay(layer);
 }
+

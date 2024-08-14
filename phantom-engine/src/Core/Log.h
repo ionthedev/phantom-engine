@@ -1,10 +1,11 @@
 #pragma once
 
-#include "Core/Core.h"
 #include "PhantomPch.h"
 
+#include "Core/Core.h"
+
 #define GLM_ENABLE_EXPERIMENTAL
-#include "glm/gtx/string_cast.hpp">
+#include "glm/gtx/string_cast.hpp"
 
 #include <spdlog/spdlog.h>
 #include "spdlog/fmt/ostr.h"
@@ -14,8 +15,8 @@ namespace Phantom {
 	{
 	public:
 		static void Init();
-		static static std::shared_ptr<spdlog::logger>& GetCoreLogger() { return s_CoreLogger; }
-		static static std::shared_ptr<spdlog::logger>& GetClientLogger() { return s_ClientLogger; }
+		static std::shared_ptr<spdlog::logger>& GetCoreLogger() { return s_CoreLogger; }
+		static std::shared_ptr<spdlog::logger>& GetClientLogger() { return s_ClientLogger; }
 	private:
 		static std::shared_ptr<spdlog::logger> s_CoreLogger;
 		static std::shared_ptr<spdlog::logger> s_ClientLogger;

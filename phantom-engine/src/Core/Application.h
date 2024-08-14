@@ -5,8 +5,8 @@
 #ifndef APPLICATION_H
 #define APPLICATION_H
 #include "Layer.h"
+#include "Core.h"
 #include "LayerStack.h"
-#include "Window.h"
 #include "Event_System/Event.h"
 #include "PhantomPch.h"
 
@@ -26,10 +26,10 @@ public:
     virtual void Run();
     void MakeLayer(Layer* layer);
     void MakeOverlay(Layer* layer);
+
 private:
 
     LayerStack m_LayerStack;
-
 };
 
     Application* CreateApplication();

@@ -7,7 +7,9 @@
 #ifndef CORE_H
 #define CORE_H
 
-#include <filesystem>
+
+#include <memory>
+
 
 // =============================== [ PHYSICS ] =====================================
 #include <Jolt/Jolt.h>
@@ -31,8 +33,6 @@
 
 
 
-#endif //CORE_H
-
 
 #define PH_EXPAND_MACRO(x) x
 #define PH_STRINGIFY_MACRO(x) #x
@@ -41,7 +41,28 @@
 
 #define BIT(x) (1 << x)
 
+namespace Phantom
+{
+    template<typename T>
+    using Scope = std::unique_ptr<T>;
+    template<typename T, typename ... Args>
+    constexpr Scope<T> CreateScope(Args&& ... args)
+    {
+        return std::make_unique<T>(std::forward<Args>(args)...);
+    }
+
+    template<typename T>
+    using Ref = std::shared_ptr<T>;
+    template<typename T, typename ... Args>
+    constexpr Ref<T> CreateRef(Args&& ... args)
+    {
+        return std::make_shared<T>(std::forward<Args>(args)...);
+    }
+}
 
 
+#endif
 #include "Core/Log.h"
 #include "Core/Assert.h"
+
+
