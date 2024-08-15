@@ -10,28 +10,28 @@
 #include "rlgl.h"
 #include <iostream>
 
-Phantom::Application::Application()
-{
 
-}
 
-Phantom::Application::~Application()
-{
-}
+Phantom::Application::Application() = default;
 
-void Phantom::Application::Run() // Literally just int maint()
+void Phantom::Application::Start() const
 {
+    PH_CORE_WARN("Application Started");
+    PH_WARN("Application Started");
 
 
 }
 
-void Phantom::Application::MakeLayer(Layer *layer)
+void Phantom::Application::Update(double _deltaTime) const
 {
-    m_LayerStack.MakeLayer(layer);
+
 }
 
-void Phantom::Application::MakeOverlay(Layer *layer)
+void Phantom::Application::FixedUpdate(double _deltaTime) const
 {
-    m_LayerStack.MakeOverlay(layer);
+}
+
+void Phantom::Application::Render() const
+{
 }
 

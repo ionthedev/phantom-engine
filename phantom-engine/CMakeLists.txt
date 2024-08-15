@@ -11,7 +11,20 @@ add_library(PhantomEngine SHARED
         src/Event_System/ApplicationEvent.h
         src/Event_System/KeyEvent.h
         src/Event_System/MouseEvent.h
-        src/Core/Assert.h)
+        src/Core/Assert.h
+        src/Core/Engine.cpp
+        src/Core/Engine.h
+        src/Core/Object.cpp
+        src/Core/Object.h
+        src/Systems/System.cpp
+        src/Systems/System.h
+        src/Core/Scene.cpp
+        src/Core/Scene.h
+        src/Core/Component.h
+        src/Components/Transform2D.cpp
+        src/Components/Transform2D.h
+        src/Components/Transform3D.cpp
+        src/Components/Transform3D.h)
 add_library(PH::Lib ALIAS PhantomEngine)
 
 

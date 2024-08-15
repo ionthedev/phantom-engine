@@ -8,6 +8,7 @@
 #include "Core.h"
 #include "LayerStack.h"
 #include "Event_System/Event.h"
+#include "Object.h"
 #include "PhantomPch.h"
 
 
@@ -21,15 +22,19 @@ class Application {
 
 public:
     Application();
-    virtual ~Application();
+    ~Application()
+    {
+    }
 
-    virtual void Run();
-    void MakeLayer(Layer* layer);
-    void MakeOverlay(Layer* layer);
 
+
+    virtual void Start() const;
+    virtual void Update(double _deltaTime) const;
+    virtual void FixedUpdate(double _deltaTime) const;
+    virtual void Render() const;
 private:
 
-    LayerStack m_LayerStack;
+
 };
 
     Application* CreateApplication();

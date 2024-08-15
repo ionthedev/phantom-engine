@@ -43,6 +43,9 @@
 
 namespace Phantom
 {
+
+    using Entity = uint32_t;
+
     template<typename T>
     using Scope = std::unique_ptr<T>;
     template<typename T, typename ... Args>

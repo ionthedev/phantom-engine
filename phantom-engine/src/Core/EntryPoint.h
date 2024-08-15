@@ -12,12 +12,12 @@ extern Phantom::Application* Phantom::CreateApplication();
 
 int main(int argc, char** argv) {
 
-    Phantom::Log::Init();
-    PH_CORE_WARN("Initialized Log!");
-    PH_INFO("Hello!");
 
+
+    Phantom::Log::Init();
+    PH_CORE_TRACE("Logging Initialized");
+    PH_CORE_TRACE("Entry Point Created");
     auto program = Phantom::CreateApplication();  // Ensure usage of the Phantom namespace
-    program->Run();
     delete program;
     return 0;
 }
