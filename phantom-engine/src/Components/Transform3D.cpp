@@ -20,6 +20,6 @@ namespace Phantom {
     {
         Component::Update(_deltaTime);
 
-        PH_CORE_INFO("Updating Transform Component");
+        //PH_CORE_INFO("Updating Transform Component");
     }
 } // Phantom

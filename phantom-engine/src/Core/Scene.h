@@ -4,6 +4,9 @@
 
 #ifndef SCENE_H
 #define SCENE_H
+
+
+#include "PhantomPch.h"
 #include <entt/entt.hpp>
 
 
@@ -15,7 +18,7 @@ namespace Phantom {
     class Scene {
     public:
         Scene();
-        ~Scene();
+        virtual ~Scene();
 
         virtual void Start();
         virtual void Update(double deltaTime) = 0;

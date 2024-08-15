@@ -46,6 +46,7 @@ public:
         m_Scene->m_Registry.remove<T>(m_entityHandle);
     }
 
+
 private:
     entt::entity m_entityHandle;
     Scene* m_Scene;

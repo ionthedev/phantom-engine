@@ -1,4 +1,8 @@
 cmake_minimum_required(VERSION 3.19)
+
+# Enable Position-Independent Code (PIC) globally
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+
 add_library(PhantomEngine SHARED
         src/Core/Log.cpp
         src/Core/Layer.cpp
@@ -27,44 +31,14 @@ add_library(PhantomEngine SHARED
         src/Components/Transform3D.h)
 add_library(PH::Lib ALIAS PhantomEngine)
 
-
-
+# Option to build shared libraries
 option(BUILD_SHARED_LIBS "Build shared libraries" ON)
-
-
 
 target_sources(
         PhantomEngine
         PRIVATE
         "src/Core/Application.cpp"
 )
-
-
-#[[
-# Add the PhantomEngine library
-if(BUILD_SHARED_LIBS)
-    add_library(PhantomEngine SHARED
-            src/PhantomPch.h
-            src/Core/EntryPoint.h
-            src/Core/Application.h
-            src/Core/Application.cpp
-            src/Core/Log.h
-            src/Core/Log.cpp
-            # Add other source files as necessary
-    )
-    target_compile_definitions(PhantomEngine PUBLIC PHANTOM_ENGINE_EXPORTS)
-else()
-    add_library(PhantomEngine STATIC
-            src/PhantomPch.h
-            src/Core/EntryPoint.h
-            src/Core/Application.h
-            src/Core/Application.cpp
-            src/Core/Log.h
-            src/Core/Log.cpp
-            # Add other source files as necessary
-    )
-endif()
-]]
 
 #-----------------------------------------------------------------------------------------------------
 
@@ -88,7 +62,6 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(entt)
 
-
 # Fetch Raylib
 FetchContent_Declare(
         raylib
@@ -97,6 +70,7 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(raylib)
 
+# Fetch spdlog
 FetchContent_Declare(
         spdlog
         GIT_REPOSITORY https://github.com/gabime/spdlog.git
@@ -106,7 +80,6 @@ FetchContent_MakeAvailable(spdlog)
 
 #-----------------------------------------------------------------------------------------------------
 
-
 # Include directories
 target_include_directories(PhantomEngine
         PUBLIC
@@ -114,7 +87,7 @@ target_include_directories(PhantomEngine
         ${jolt_SOURCE_DIR}/Build
         ${entt_SOURCE_DIR}/src
         ${raylib_SOURCE_DIR}/src
-        ${spdlog_SOURCE_DIR}/src
+        ${spdlog_SOURCE_DIR}/include  # Use include instead of src for spdlog
         src/ThirdParty/rlImGui
         src/ThirdParty/imgui-docking/imgui
 )
@@ -136,7 +109,6 @@ set_target_properties(
         CXX_STANDARD_REQUIRED TRUE
 )
 
-
 # Link dependencies
 target_link_libraries(PhantomEngine
         PUBLIC
@@ -144,12 +116,6 @@ target_link_libraries(PhantomEngine
         raylib
         rlimgui
         imgui
-        spdlog::spdlog
+        spdlog
         Jolt
-        #Jolt::Jolt
-
-
-
-
 )
-
