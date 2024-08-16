@@ -28,7 +28,9 @@ add_library(PhantomEngine SHARED
         src/Components/Transform2D.cpp
         src/Components/Transform2D.h
         src/Components/Transform3D.cpp
-        src/Components/Transform3D.h)
+        src/Components/Transform3D.h
+        src/Core/MeshLibrary.cpp
+        src/Core/MeshLibrary.h)
 add_library(PH::Lib ALIAS PhantomEngine)
 
 # Option to build shared libraries
