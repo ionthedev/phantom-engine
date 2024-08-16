@@ -30,6 +30,7 @@
 #include "rlImGui.h"
 #include "raylib.h"
 #include "raymath.h"
+#include <rlgl.h>
 #include "rcamera.h"
 #include "Math/PHMath.h"
 
