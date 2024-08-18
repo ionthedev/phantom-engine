@@ -5,18 +5,22 @@
 #ifndef BROADPHASE_H
 #define BROADPHASE_H
 
+#include <Jolt/Jolt.h>
+
+#include "ObjectLayer.h"
+#include "Jolt/Physics/Collision/BroadPhase/BroadPhaseLayer.h"
 
 
 namespace BroadPhaseLayers
 {
-    static constexpr BroadPhaseLayer NON_MOVING(0);
-    static constexpr BroadPhaseLayer MOVING(1);
+    static constexpr JPH::BroadPhaseLayer NON_MOVING(0);
+    static constexpr JPH::BroadPhaseLayer MOVING(1);
     static constexpr uint NUM_LAYERS(2);
 };
 
 // BroadPhaseLayerInterface implementation
 // This defines a mapping between object and broadphase layers.
-class BPLayerInterfaceImpl final : public BroadPhaseLayerInterface
+class BPLayerInterfaceImpl final : public JPH::BroadPhaseLayerInterface
 {
 public:
     BPLayerInterfaceImpl()
@@ -31,26 +35,26 @@ public:
         return BroadPhaseLayers::NUM_LAYERS;
     }
 
-    virtual BroadPhaseLayer			GetBroadPhaseLayer(ObjectLayer inLayer) const override
+    virtual JPH::BroadPhaseLayer GetBroadPhaseLayer(JPH::ObjectLayer inLayer) const override
     {
         JPH_ASSERT(inLayer < Layers::NUM_LAYERS);
         return mObjectToBroadPhase[inLayer];
     }
 
 #if defined(JPH_EXTERNAL_PROFILE) || defined(JPH_PROFILE_ENABLED)
-    virtual const char *			GetBroadPhaseLayerName(BroadPhaseLayer inLayer) const override
+    virtual const char * GetBroadPhaseLayerName(JPH::BroadPhaseLayer inLayer) const override
     {
-        switch ((BroadPhaseLayer::Type)inLayer)
+        switch ((JPH::BroadPhaseLayer::Type)inLayer)
         {
-            case (BroadPhaseLayer::Type)BroadPhaseLayers::NON_MOVING:	return "NON_MOVING";
-            case (BroadPhaseLayer::Type)BroadPhaseLayers::MOVING:		return "MOVING";
+            case (JPH::BroadPhaseLayer::Type)BroadPhaseLayers::NON_MOVING:	return "NON_MOVING";
+            case (JPH::BroadPhaseLayer::Type)BroadPhaseLayers::MOVING:		return "MOVING";
             default:													JPH_ASSERT(false); return "INVALID";
         }
     }
 #endif // JPH_EXTERNAL_PROFILE || JPH_PROFILE_ENABLED
 
 private:
-    BroadPhaseLayer					mObjectToBroadPhase[Layers::NUM_LAYERS];
+    JPH::BroadPhaseLayer					mObjectToBroadPhase[Layers::NUM_LAYERS];
 };
 
 

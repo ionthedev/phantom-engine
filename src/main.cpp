@@ -7,92 +7,74 @@
 #include "imguiThemes.h"
 #pragma endregion
 
+#include "Core/Engine.h"
+#include "Core/EntryPoint.h"
+#include "FearTheCrow/PrototypeScene.h"
 
 
-int main(void)
+class FearTheCrow : public Phantom::Application
+{
+public:
+	FearTheCrow()
+	{
+
+		PH_INFO("Initialized");
+		//Initializes the engine and triggers the loop
+
+		Phantom::Engine* engine = Phantom::Engine::GetSingleton(true);
+
+		currentScene = new FTC::PrototypeScene();
+		engine->SetApp(this);
+		engine->Loop();
+	}
+
+	~FearTheCrow()
+	{
+		Phantom::Engine* engine = Phantom::Engine::GetSingleton(true);
+		engine->Shutdown();
+	}
+
+	void Start() const override;
+	void Update(double _deltaTime) const override;
+	void FixedUpdate(double _deltaTime) const override;
+	void Render() const override;
+
+
+
+};
+
+void FearTheCrow::Start() const
 {
 
-	SetConfigFlags(FLAG_WINDOW_RESIZABLE);
-	InitWindow(800, 450, "raylib [core] example - basic window");
-
-#pragma region imgui
-	rlImGuiSetup(true);
-
-	//you can use whatever imgui theme you like!
-	//ImGui::StyleColorsDark();
-	//imguiThemes::yellow();
-	//imguiThemes::gray();
-	imguiThemes::green();
-	//imguiThemes::red();
-	//imguiThemes::embraceTheDarkness();
+	InitWindow(800, 500, "Fear The Crow");
+	Application::Start();
+	currentScene->Start();
+	SetTargetFPS(60);
 
 
-	ImGuiIO &io = ImGui::GetIO(); (void)io;
-	io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;       // Enable Keyboard Controls
-	io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;           // Enable Docking
-	io.FontGlobalScale = 2;
 
-	ImGuiStyle &style = ImGui::GetStyle();
-	if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
+}
+
+void FearTheCrow::Update(double _deltaTime) const
+{
+	if(!WindowShouldClose())
 	{
-		//style.WindowRounding = 0.0f;
-		style.Colors[ImGuiCol_WindowBg].w = 0.5f;
-		//style.Colors[ImGuiCol_DockingEmptyBg].w = 0.f;
+		currentScene->Update();
 	}
+}
 
-#pragma endregion
+void FearTheCrow::FixedUpdate(double _deltaTime) const
+{
+	Application::FixedUpdate(_deltaTime);
+	currentScene->FixedUpdate();
+}
 
+void FearTheCrow::Render() const
+{
+	currentScene->Render();
+}
 
-
-	while (!WindowShouldClose())
-	{
-		BeginDrawing();
-		ClearBackground(RAYWHITE);
-
-
-	#pragma region imgui
-		rlImGuiBegin();
-
-		ImGui::PushStyleColor(ImGuiCol_WindowBg, {});
-		ImGui::PushStyleColor(ImGuiCol_DockingEmptyBg, {});
-		ImGui::DockSpaceOverViewport(ImGui::GetMainViewport());
-		ImGui::PopStyleColor(2);
-	#pragma endregion
-
-
-		ImGui::Begin("Test");
-
-		ImGui::Text("Hello");
-		ImGui::Button("Button");
-		ImGui::Button("Button2");
-
-		ImGui::End();
-
-
-		DrawText("Congrats! You created your first window!", 190, 200, 20, LIGHTGRAY);
-
-
-	#pragma region imgui
-		rlImGuiEnd();
-
-		if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
-		{
-			ImGui::UpdatePlatformWindows();
-			ImGui::RenderPlatformWindowsDefault();
-		}
-	#pragma endregion
-
-		EndDrawing();
-	}
-
-
-#pragma region imgui
-	rlImGuiShutdown();
-#pragma endregion
-
-
-
-	CloseWindow();
-
-	return 0;
+Phantom::Application* Phantom::CreateApplication()
+{
+	return new FearTheCrow();
 }

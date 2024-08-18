@@ -47,10 +47,34 @@ file(GLOB_RECURSE MY_SOURCES CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/src/
 
 add_executable("${CMAKE_PROJECT_NAME}"
 		src/main.cpp
-		src/Core/Physics.cpp
-		src/Core/Physics.h
-		src/Core/Broadphase.cpp
-		src/Core/Broadphase.h)
+        src/Core/Physics/Physics.cpp
+        src/Core/Physics/Physics.h
+        src/Core/Physics/BroadphaseLayer.h
+		src/Core/Physics/ObjectLayer.h
+		src/Core/Physics/ObjectVsBroadPhaseLayer.h
+		src/Core/Physics/ContactListener.h
+		src/Core/Physics/BodyActivationListener.h
+		src/Core/Engine.cpp
+		src/Core/Engine.h
+		src/Core/Application.cpp
+		src/Core/Application.h
+		src/Core/Log.cpp
+		src/Core/Log.h
+		src/Core/EntryPoint.h
+		src/Core/Game/Scene.cpp
+		src/Core/Game/Scene.h
+		src/Core/Game/Object.cpp
+		src/Core/Game/Object.h
+		src/Core/Game/Component.cpp
+		src/Core/Game/Component.h
+		src/Core/Game/ObjectBehavior.h
+		src/FearTheCrow/PrototypeScene.cpp
+		src/FearTheCrow/PrototypeScene.h
+		src/FearTheCrow/Components/ModelComponent.h
+		src/FearTheCrow/Components/TransformComponent.h
+		src/FearTheCrow/Components/TransformComponent.cpp
+		src/FearTheCrow/Components/ModelComponent.cpp
+)
 
 set_property(TARGET "${CMAKE_PROJECT_NAME}" PROPERTY CXX_STANDARD 17)
 
