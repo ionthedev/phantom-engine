@@ -26,7 +26,7 @@ namespace Phantom
         virtual void Update(double _deltaTime) const;
         virtual void FixedUpdate(double _deltaTime) const;
         virtual void Render() const;
-        Scene* currentScene;
+        Scene* m_Scene;
     private:
 
 

@@ -32,6 +32,7 @@ namespace Phantom
         Component(Object& object)
             : HostingObject(object)
         {
+            Component::OnCreate();
         }
         virtual ~Component() = default;
 
@@ -51,6 +52,8 @@ namespace Phantom
         virtual void OnDestoy() {};
         virtual void OnUpdate() {};
         virtual void OnRender() {};
+
+
     };
 }
 

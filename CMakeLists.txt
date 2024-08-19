@@ -5,6 +5,7 @@ cmake_minimum_required(VERSION 3.16)
 
 set(CMAKE_CXX_STANDARD 17)
 
+
 #! ! ! ! ! ! !
 #set this to true to ship the game!
 #basically this will change the RESOURCES_PATH to be the local path
@@ -36,7 +37,6 @@ project(FearTheCrow)
 add_subdirectory(thirdparty/raylib-5.0)
 add_subdirectory(thirdparty/imgui-docking)
 add_subdirectory(thirdparty/rlImGui)
-add_subdirectory(thirdparty/JoltPhysics/Build)
 add_subdirectory(thirdparty/spdlog)
 
 
@@ -47,13 +47,6 @@ file(GLOB_RECURSE MY_SOURCES CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/src/
 
 add_executable("${CMAKE_PROJECT_NAME}"
 		src/main.cpp
-        src/Core/Physics/Physics.cpp
-        src/Core/Physics/Physics.h
-        src/Core/Physics/BroadphaseLayer.h
-		src/Core/Physics/ObjectLayer.h
-		src/Core/Physics/ObjectVsBroadPhaseLayer.h
-		src/Core/Physics/ContactListener.h
-		src/Core/Physics/BodyActivationListener.h
 		src/Core/Engine.cpp
 		src/Core/Engine.h
 		src/Core/Application.cpp
@@ -70,10 +63,16 @@ add_executable("${CMAKE_PROJECT_NAME}"
 		src/Core/Game/ObjectBehavior.h
 		src/FearTheCrow/PrototypeScene.cpp
 		src/FearTheCrow/PrototypeScene.h
-		src/FearTheCrow/Components/ModelComponent.h
-		src/FearTheCrow/Components/TransformComponent.h
-		src/FearTheCrow/Components/TransformComponent.cpp
-		src/FearTheCrow/Components/ModelComponent.cpp
+		src/Core/Game/Components/ModelComponent.h
+		src/Core/Game/Components/TransformComponent.h
+		src/Core/Game/Components/TransformComponent.cpp
+		src/Core/Game/Components/ModelComponent.cpp
+		src/Core/Game/Components/PhysicsComponent.cpp
+		src/Core/Game/Components/PhysicsComponent.h
+		src/Core/Physics/Collision.h
+		src/Core/Physics/Collision.cpp
+		src/Core/Physics/PhysicsEngine.cpp
+		src/Core/Physics/PhysicsEngine.h
 )
 
 set_property(TARGET "${CMAKE_PROJECT_NAME}" PROPERTY CXX_STANDARD 17)
@@ -115,5 +114,5 @@ target_include_directories("${CMAKE_PROJECT_NAME}" PUBLIC "${CMAKE_CURRENT_SOURC
 
 # Link raylib library statically, Here wou would add other libraries!
 target_link_libraries("${CMAKE_PROJECT_NAME}" PRIVATE 
-	raylib_static imgui rlimgui Jolt spdlog
+	raylib_static imgui rlimgui spdlog
 )

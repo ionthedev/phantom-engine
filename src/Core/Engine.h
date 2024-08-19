@@ -7,7 +7,7 @@
 #include <chrono>
 
 #include "Application.h"
-#include "Physics/Physics.h"
+#include "Physics/PhysicsEngine.h"
 
 
 namespace Phantom {
@@ -45,7 +45,7 @@ namespace Phantom {
         mutable std::chrono::steady_clock::time_point currentFixedFrameTime;
 
         static Engine* s_Instance; // Static instance pointer
-        Physics* PhysicsServer;
+        PhysicsEngine* physicsEngine;
     };
 
 } // namespace Phantom

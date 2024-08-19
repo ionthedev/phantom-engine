@@ -18,7 +18,6 @@ namespace Phantom {
 
     Engine::~Engine()
     {
-        delete PhysicsServer;
     }
 
     // Public static method to access the singleton instance
@@ -36,7 +35,8 @@ namespace Phantom {
     void Engine::Init()
     {
         // Initialization code
-        PhysicsServer = new Physics();
+        PhysicsEngine* physEngine = PhysicsEngine::GetSingleton(true);
+        physicsEngine = physEngine;
 
     }
 
@@ -44,7 +44,6 @@ namespace Phantom {
     {
         PH_CORE_TRACE("Applicaiton Set");
         m_Application = _application;
-        PhysicsServer->application = m_Application;
     }
 
     void Engine::Loop()
@@ -65,12 +64,12 @@ namespace Phantom {
 
             while (tAccumulator >= GetFixedDeltaTime())
             {
-                PhysicsServer->PhysicsUpdate(deltaTime);
                 tAccumulator -= GetFixedDeltaTime();
+                physicsEngine->PhysicsUpdate(GetFixedDeltaTime());
             }
 
             BeginDrawing();
-            BeginMode3D(m_Application->currentScene->camera);
+            BeginMode3D(m_Application->m_Scene->camera);
             m_Application->Render();
             EndMode3D();
             EndDrawing();

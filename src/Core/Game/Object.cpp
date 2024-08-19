@@ -4,6 +4,10 @@
 
 #include "Object.h"
 
+#include "Components/PhysicsComponent.h"
+#include "Components/TransformComponent.h"
+
+
 namespace Phantom {
     Object::~Object()
     {
@@ -58,6 +62,7 @@ namespace Phantom {
     {
         Object* newChild = new Object();
         newChild->Parent = this;
+        newChild->AddComponent<Phantom::TransformComponent>();
         Children.emplace_back(newChild);
         return newChild;
     }

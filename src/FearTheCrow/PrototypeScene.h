@@ -6,9 +6,13 @@
 #define PROTOTYPESCENE_H
 #include "Core/Game/Scene.h"
 
+#include "Core/Physics/Collision.h"
+
 namespace FTC {
 
-class PrototypeScene : public Phantom::Scene{
+class PrototypeScene : public Phantom::Scene {
+
+
 public:
     PrototypeScene();
     ~PrototypeScene();
@@ -17,6 +21,14 @@ public:
     void FixedUpdate() override;
     void Render() override;
     Object* test_mesh;
+    Object* floorMesh;
+
+    Collider test_meshCol;
+    Collider floorMeshCol;
+
+    bool collision;
+
+
 };
 
 } // FearTheCrow

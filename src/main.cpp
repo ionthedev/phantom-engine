@@ -23,7 +23,7 @@ public:
 
 		Phantom::Engine* engine = Phantom::Engine::GetSingleton(true);
 
-		currentScene = new FTC::PrototypeScene();
+		m_Scene = new FTC::PrototypeScene();
 		engine->SetApp(this);
 		engine->Loop();
 	}
@@ -48,7 +48,7 @@ void FearTheCrow::Start() const
 
 	InitWindow(800, 500, "Fear The Crow");
 	Application::Start();
-	currentScene->Start();
+	m_Scene->Start();
 	SetTargetFPS(60);
 
 
@@ -59,19 +59,19 @@ void FearTheCrow::Update(double _deltaTime) const
 {
 	if(!WindowShouldClose())
 	{
-		currentScene->Update();
+		m_Scene->Update();
 	}
 }
 
 void FearTheCrow::FixedUpdate(double _deltaTime) const
 {
 	Application::FixedUpdate(_deltaTime);
-	currentScene->FixedUpdate();
+	m_Scene->FixedUpdate();
 }
 
 void FearTheCrow::Render() const
 {
-	currentScene->Render();
+	m_Scene->Render();
 }
 
 Phantom::Application* Phantom::CreateApplication()
