@@ -59,14 +59,14 @@ void FearTheCrow::Update(double _deltaTime) const
 {
 	if(!WindowShouldClose())
 	{
-		m_Scene->Update();
+		m_Scene->Update(_deltaTime);
 	}
 }
 
 void FearTheCrow::FixedUpdate(double _deltaTime) const
 {
 	Application::FixedUpdate(_deltaTime);
-	m_Scene->FixedUpdate();
+	m_Scene->FixedUpdate(_deltaTime);
 }
 
 void FearTheCrow::Render() const

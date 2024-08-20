@@ -29,7 +29,7 @@ namespace Phantom {
         double GetDeltaTime() const;
         double GetFixedDeltaTime() const;
 
-        double targetFrameRate = 60;
+        double targetFrameRate = 120;
 
     protected:
         Engine(bool _initialized); // Protected constructor

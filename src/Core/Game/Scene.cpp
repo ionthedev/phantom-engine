@@ -17,11 +17,11 @@ namespace Phantom {
     {
     }
 
-    void Scene::Update()
+    void Scene::Update(double deltaTime)
     {
     }
 
-    void Scene::FixedUpdate()
+    void Scene::FixedUpdate(double deltaTime)
     {
     }
 

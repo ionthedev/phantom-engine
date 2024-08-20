@@ -17,8 +17,8 @@ public:
     PrototypeScene();
     ~PrototypeScene();
     void Start() override;
-    void Update() override;
-    void FixedUpdate() override;
+    void Update(double deltaTime) override;
+    void FixedUpdate(double deltaTime) override;
     void Render() override;
     Object* test_mesh;
     Object* floorMesh;

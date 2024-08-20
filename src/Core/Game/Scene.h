@@ -22,8 +22,8 @@ public:
     Object* AddObject() { return AddChild(); }
 
     virtual void Start();
-    virtual void Update();
-    virtual void FixedUpdate();
+    virtual void Update(double deltaTime);
+    virtual void FixedUpdate(double deltaTime);
     virtual void Render();
 
     Camera camera = { 0 };

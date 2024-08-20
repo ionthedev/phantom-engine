@@ -12,6 +12,7 @@ void Phantom::TransformComponent::SetPosition(const Vector3& position)
 {
 
     m_Position = position;
+    m_PreviousPosition = m_Position;
 }
 
 Vector3 Phantom::TransformComponent::GetPosition() const
@@ -19,14 +20,45 @@ Vector3 Phantom::TransformComponent::GetPosition() const
     return m_Position;
 }
 
+Vector3 Phantom::TransformComponent::GetPreviousPosition() const
+{
+    return m_PreviousPosition;
+}
+
 void Phantom::TransformComponent::SetRotation(const Vector3& rotation)
 {
     m_Rotation = rotation;
+    m_PreviousRotation = m_Rotation;
 }
 
 Vector3 Phantom::TransformComponent::GetRotation() const
 {
     return m_Rotation;
+}
+
+void Phantom::TransformComponent::SetRotationAngle(const float& rotation)
+{
+    m_Angle = rotation;
+}
+
+float Phantom::TransformComponent::GetRotationAngle() const
+{
+    return m_Angle;
+}
+
+void Phantom::TransformComponent::SetRotationAxis(const Vector3& rotation)
+{
+    m_RotationAxis = rotation;
+}
+
+Vector3 Phantom::TransformComponent::GetRotationAxis() const
+{
+    return m_RotationAxis;
+}
+
+Vector3 Phantom::TransformComponent::GetPreviousRotation() const
+{
+    return m_PreviousRotation;
 }
 
 void Phantom::TransformComponent::SetAngle(const float& angle)

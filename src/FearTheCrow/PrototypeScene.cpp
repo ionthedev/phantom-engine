@@ -13,6 +13,7 @@
 #include "rlgl.h"
 #include "Core/Log.h"
 #include "Core/Game/Components/ModelComponent.h"
+#include "Core/Game/Components/PhysicsComponent.h"
 #include "Core/Game/Components/TransformComponent.h"
 
 #include "Core/Physics/Collision.h"
@@ -42,49 +43,38 @@ void FTC::PrototypeScene::Start()
     test_mesh = AddObject();
     test_mesh->AddComponent<Phantom::ModelComponent>();
     test_mesh->GetComponent<Phantom::ModelComponent>()->SetModel("../resources/Suzanne.gltf");
-    test_mesh->GetComponent<Phantom::TransformComponent>()->SetPosition({0, 20, 0});
+    test_mesh->GetComponent<Phantom::TransformComponent>()->SetPosition({0, 15, 0});
+    test_mesh->AddComponent<Phantom::PhysicsComponent>()->SetState(Phantom::DYNAMIC);
     floorMesh = AddObject();
     floorMesh->AddComponent<Phantom::ModelComponent>();
     floorMesh->GetComponent<Phantom::ModelComponent>()->SetModel("../resources/floor.gltf");
+    floorMesh->AddComponent<Phantom::PhysicsComponent>()->SetState(Phantom::STATIC);
 
-    // Fetch the meshes from both objects
-    const Mesh& meshA = test_mesh->GetComponent<Phantom::ModelComponent>()->GetModel().meshes[0];
-    SetupColliderMesh(&test_meshCol, meshA);
-
-    const Mesh& meshB = floorMesh->GetComponent<Phantom::ModelComponent>()->GetModel().meshes[0];
-    SetupColliderMesh(&floorMeshCol, meshB);
 }
 
-void FTC::PrototypeScene::Update()
+void FTC::PrototypeScene::Update(double deltaTime)
 {
-
-    Vector3 normal = {0}; //Init the normal value
-    collision = CheckCollision(test_meshCol, floorMeshCol, &normal);
-    // Update the position of the moving mesh
-    Vector3 pos = test_mesh->GetComponent<Phantom::TransformComponent>()->GetPosition();
-    if(!collision) pos.y -= 0.1f;  // Move downward
-    test_mesh->GetComponent<Phantom::TransformComponent>()->SetPosition(pos);
-
-    UpdateCollider(test_mesh->GetComponent<Phantom::TransformComponent>()->GetPosition(), &test_meshCol);
-    UpdateCollider(floorMesh->GetComponent<Phantom::TransformComponent>()->GetPosition(), &floorMeshCol);
 
 
     // Check for collision between the meshes
 
 
     // Call the base class update method
-    Scene::Update();
+    Scene::Update(deltaTime);
 
     // Update components for rendering
-    test_mesh->Update();
-    floorMesh->Update();
+    test_mesh->Update(deltaTime);
+    floorMesh->Update(deltaTime);
 }
 
-
-void FTC::PrototypeScene::FixedUpdate()
+void FTC::PrototypeScene::FixedUpdate(double deltaTime)
 {
-    Scene::FixedUpdate();
+    Scene::FixedUpdate(deltaTime);
+    test_mesh->FixedUpdate(deltaTime);
+    floorMesh->FixedUpdate(deltaTime);
 }
+
+
 
 void FTC::PrototypeScene::Render()
 {

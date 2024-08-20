@@ -27,11 +27,13 @@ namespace Phantom {
 
     public:
         ~Object();
+        void Update(double deltaTime);
+        virtual void FixedUpdate(double deltaTime);
 
-        void Update();
         void Render();
 
         Component* AddComponent(std::unique_ptr<Component> component);
+        void RegisterPhysicsComponents();
         void RemoveComponent(size_t componentID);
         Component* GetComponent(size_t componentID);
 

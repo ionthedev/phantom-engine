@@ -44,44 +44,48 @@ namespace Phantom {
     {
         PH_CORE_TRACE("Applicaiton Set");
         m_Application = _application;
+
+
+
     }
 
     void Engine::Loop()
     {
-        if(m_Application == nullptr)
+        if (m_Application == nullptr)
         {
             PH_CORE_ERROR("NO APPLICATION SET");
             return;
         }
 
         m_Application->Start();
-        while (s_Instance != nullptr || !initialized)
+        physicsEngine->SetScene(m_Application->m_Scene);
+
+        tAccumulator = 0.0;
+
+        while (s_Instance != nullptr && initialized)
         {
             double deltaTime = GetDeltaTime();
+            tAccumulator += deltaTime;
 
             // Fixed update loop to handle fixed time steps
-            m_Application->Update(deltaTime);
-
             while (tAccumulator >= GetFixedDeltaTime())
             {
                 tAccumulator -= GetFixedDeltaTime();
-                physicsEngine->PhysicsUpdate(GetFixedDeltaTime());
             }
+
+            m_Application->FixedUpdate(GetFixedDeltaTime());
+
+            // Update with the actual delta time
+            m_Application->Update(deltaTime);
 
             BeginDrawing();
             BeginMode3D(m_Application->m_Scene->camera);
             m_Application->Render();
             EndMode3D();
             EndDrawing();
-            tAccumulator += deltaTime;
-
         }
 
-        // De-Initialization and Kill Process
-        //--------------------------------------------------------------------------------------
         Shutdown();
-        // Close window and OpenGL context
-        //--------------------------------------------------------------------------------------
     }
 
     void Engine::Shutdown()
@@ -92,9 +96,8 @@ namespace Phantom {
 
     double Engine::GetDeltaTime() const
     {
-        static auto tLastUpdate = std::chrono::steady_clock::now();;
-
-        currentDeltaFrameTime = std::chrono::steady_clock::now();
+        static auto tLastUpdate = std::chrono::steady_clock::now();
+        auto currentDeltaFrameTime = std::chrono::steady_clock::now();
 
         double delta = std::chrono::duration<double>(currentDeltaFrameTime - tLastUpdate).count();
         tLastUpdate = currentDeltaFrameTime;
@@ -104,6 +107,6 @@ namespace Phantom {
 
     double Engine::GetFixedDeltaTime() const
     {
-        return 1 / targetFrameRate;
+        return 1.0 / targetFrameRate;
     }
 } // Phantom
