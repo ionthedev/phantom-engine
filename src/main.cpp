@@ -9,7 +9,7 @@
 
 #include "Core/Engine.h"
 #include "Core/EntryPoint.h"
-#include "FearTheCrow/PrototypeScene.h"
+#include "FearTheCrow/DemoScene.h"
 
 
 class FearTheCrow : public Phantom::Application
@@ -23,7 +23,7 @@ public:
 
 		Phantom::Engine* engine = Phantom::Engine::GetSingleton(true);
 
-		m_Scene = new FTC::PrototypeScene();
+		m_Scene = new DemoScene();
 		engine->SetApp(this);
 		engine->Loop();
 	}

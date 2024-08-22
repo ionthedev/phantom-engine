@@ -6,3 +6,14 @@ build/
 CMakeSettings.json
 Makefile
 /cmake-build-debug/
+/CMakeFiles/3.22.1/CompilerIdC/a.out
+/CMakeFiles/3.22.1/CompilerIdC/CMakeCCompilerId.c
+/CMakeFiles/3.22.1/CompilerIdCXX/a.out
+/CMakeFiles/3.22.1/CompilerIdCXX/CMakeCXXCompilerId.cpp
+/CMakeFiles/3.22.1/CMakeCCompiler.cmake
+/CMakeFiles/3.22.1/CMakeCXXCompiler.cmake
+/CMakeFiles/3.22.1/CMakeDetermineCompilerABI_C.bin
+/CMakeFiles/3.22.1/CMakeDetermineCompilerABI_CXX.bin
+/CMakeFiles/3.22.1/CMakeSystem.cmake
+/CMakeFiles/cmake.check_cache
+/CMakeFiles/CMakeOutput.log

@@ -38,6 +38,8 @@ add_subdirectory(thirdparty/raylib-5.0)
 add_subdirectory(thirdparty/imgui-docking)
 add_subdirectory(thirdparty/rlImGui)
 add_subdirectory(thirdparty/spdlog)
+add_subdirectory(thirdparty/Jolt/Build)
+add_subdirectory(thirdparty/flecs)
 
 
 # MY_SOURCES is defined to be a list of all the source files for my game 
@@ -56,23 +58,15 @@ add_executable("${CMAKE_PROJECT_NAME}"
 		src/Core/EntryPoint.h
 		src/Core/Game/Scene.cpp
 		src/Core/Game/Scene.h
-		src/Core/Game/Object.cpp
-		src/Core/Game/Object.h
-		src/Core/Game/Component.cpp
-		src/Core/Game/Component.h
-		src/Core/Game/ObjectBehavior.h
-		src/FearTheCrow/PrototypeScene.cpp
-		src/FearTheCrow/PrototypeScene.h
-		src/Core/Game/Components/ModelComponent.h
-		src/Core/Game/Components/TransformComponent.h
-		src/Core/Game/Components/TransformComponent.cpp
-		src/Core/Game/Components/ModelComponent.cpp
-		src/Core/Game/Components/PhysicsComponent.cpp
-		src/Core/Game/Components/PhysicsComponent.h
 		src/Core/Physics/Collision.h
 		src/Core/Physics/Collision.cpp
 		src/Core/Physics/PhysicsEngine.cpp
 		src/Core/Physics/PhysicsEngine.h
+		src/Core/Game/Systems.h
+		src/Core/Game/Components.h
+		src/Core/constants.h
+		src/FearTheCrow/DemoScene.cpp
+		src/FearTheCrow/DemoScene.h
 )
 
 set_property(TARGET "${CMAKE_PROJECT_NAME}" PROPERTY CXX_STANDARD 17)
@@ -114,5 +108,5 @@ target_include_directories("${CMAKE_PROJECT_NAME}" PUBLIC "${CMAKE_CURRENT_SOURC
 
 # Link raylib library statically, Here wou would add other libraries!
 target_link_libraries("${CMAKE_PROJECT_NAME}" PRIVATE 
-	raylib_static imgui rlimgui spdlog
+	raylib_static imgui rlimgui spdlog Jolt flecs::flecs_static
 )

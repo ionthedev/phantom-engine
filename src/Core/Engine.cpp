@@ -35,8 +35,6 @@ namespace Phantom {
     void Engine::Init()
     {
         // Initialization code
-        PhysicsEngine* physEngine = PhysicsEngine::GetSingleton(true);
-        physicsEngine = physEngine;
 
     }
 
@@ -58,7 +56,6 @@ namespace Phantom {
         }
 
         m_Application->Start();
-        physicsEngine->SetScene(m_Application->m_Scene);
 
         tAccumulator = 0.0;
 

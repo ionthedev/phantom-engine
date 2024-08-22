@@ -9,17 +9,15 @@
 
 #include <vector>
 
-#include "Object.h"
 
 namespace Phantom {
 
-class Scene : public Object {
+class Scene{
 public:
     Scene();
     virtual ~Scene();
     Color Background = DARKGRAY;
 
-    Object* AddObject() { return AddChild(); }
 
     virtual void Start();
     virtual void Update(double deltaTime);
