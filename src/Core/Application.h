@@ -4,7 +4,7 @@
 
 #ifndef APPLICATION_H
 #define APPLICATION_H
-#include "Game/Scene.h"
+#include "Scene.h"
 
 
 int main(int argc, char** argv);

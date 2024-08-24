@@ -216,7 +216,6 @@ typedef struct Vector3 {
     float x;                // Vector x component
     float y;                // Vector y component
     float z;                // Vector z component
-    Vector3() = default;
 } Vector3;
 
 // Vector4, 4 components

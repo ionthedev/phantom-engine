@@ -4,7 +4,8 @@
 
 #ifndef DEMOSCENE_H
 #define DEMOSCENE_H
-#include "Core/Game/Scene.h"
+#include "../Core/Scene.h"
+#include "Objects/Player.h"
 
 
 class DemoScene : public Phantom::Scene {
@@ -15,6 +16,8 @@ public:
     void Update(double deltaTime) override;
     void FixedUpdate(double deltaTime) override;
     void Render() override;
+
+    Player* player;
 
 
 

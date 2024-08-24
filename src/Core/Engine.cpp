@@ -67,19 +67,21 @@ namespace Phantom {
             // Fixed update loop to handle fixed time steps
             while (tAccumulator >= GetFixedDeltaTime())
             {
+
+                m_Application->FixedUpdate(GetFixedDeltaTime());
                 tAccumulator -= GetFixedDeltaTime();
             }
 
-            m_Application->FixedUpdate(GetFixedDeltaTime());
 
             // Update with the actual delta time
             m_Application->Update(deltaTime);
 
             BeginDrawing();
-            BeginMode3D(m_Application->m_Scene->camera);
+            //BeginMode3D(m_Application->m_Scene->camera);
             m_Application->Render();
-            EndMode3D();
+            //EndMode3D();
             EndDrawing();
+
         }
 
         Shutdown();

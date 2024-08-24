@@ -4,10 +4,8 @@
 
 #include "DemoScene.h"
 
-#include "Core/Game/Components.h"
+#include "Objects/Player.h"
 
-#include <flecs.h>
-#include "flecs/addons/cpp/world.hpp"
 
 #include <iostream>
 #include <ostream>
@@ -18,26 +16,31 @@ DemoScene::DemoScene()
 
 void DemoScene::Start()
 {
-    Scene::Start();
-    flecs::world world;
-
-
-    auto e = world.entity("Bob");
-
-    e.add<Velocity>();
+    player = new Player();
+    camera = player->GetComponent<CameraComponent>()->GetCamera();
 }
 
 void DemoScene::Update(double deltaTime)
 {
     Scene::Update(deltaTime);
+    player->Update(deltaTime);
 }
 
 void DemoScene::FixedUpdate(double deltaTime)
 {
     Scene::FixedUpdate(deltaTime);
+    player->FixedUpdate(deltaTime);
 }
 
 void DemoScene::Render()
 {
+    BeginMode3D(player->GetComponent<CameraComponent>()->GetCamera());
     Scene::Render();
+    ClearBackground(RAYWHITE);
+    player->Render();
+
+    DrawCube({0,0,0}, 2.0f, 2.0f, 2.0f, RED);
+    DrawCubeWires({0,0,0}, 2.0f, 2.0f, 2.0f, MAROON);
+    DrawGrid(10, 1.0f);
+    EndMode3D();
 }
