@@ -25,10 +25,12 @@ public:
     void Accelerate(Vector3 wishDir, float wishSpeed, double deltaTime);
     Vector3 CalculateWishDir();
     void ApplyGravityAndFriction(double deltaTime);
+    Vector2 GetInputDir();
 
 private:
     Vector3 MoveDir;
     Vector3 WishDir;
+    Vector2 InputDir;
     CameraComponent *cameraComponent = AddComponent<CameraComponent>();
     Phantom::TransformComponent *transformComponent = AddComponent<Phantom::TransformComponent>();
 

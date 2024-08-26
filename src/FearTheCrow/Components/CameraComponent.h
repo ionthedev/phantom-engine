@@ -28,11 +28,15 @@ public:
     void SetForward(Vector3 _forward);
     Vector3 GetForward();
 
+    void SetLookAtMatrix(Matrix matrix);
+    Matrix GetLookAtMatrix();
+
     void SetRotationalVelocity(Vector3 _velocity);
     Vector3 GetRotationalVelocity();
 
-    void SetCamera(Camera3D _camera);
-    Camera3D GetCamera();
+    void SetCamera(Camera _camera);
+    Camera GetCamera();
+    Camera *GetCameraRef();
 
     //Phantom::GameObject GetLookat(); TODO: Implement Another Time
 
@@ -50,8 +54,9 @@ private:
     float FOV = 45.0f;
     Vector3 Rotation;
     Vector3 Forward = { 0, 0, 1};
+    Matrix LookRotMatrix = {0};
     Vector3 RotationalVelocity = { 0 };
-    Camera3D ViewCamera;
+    Camera ViewCamera;
 
 
 };

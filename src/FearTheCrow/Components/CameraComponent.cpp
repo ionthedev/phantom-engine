@@ -6,6 +6,8 @@
 
 #include "Core/Log.h"
 
+#include <rcamera.h>
+
 void CameraComponent::SetPosition(Vector3 _position)
 {
     Position = _position;
@@ -18,7 +20,9 @@ Vector3 CameraComponent::GetPosition()
 
 void CameraComponent::SetTarget(Vector3 _target)
 {
+    ViewCamera.target = _target;
     Target = _target;
+
 }
 
 Vector3 CameraComponent::GetTarget()
@@ -28,6 +32,10 @@ Vector3 CameraComponent::GetTarget()
 
 void CameraComponent::SetRotation(Vector3 _rotation)
 {
+
+    CameraYaw(GetCameraRef(), -_rotation.x*DEG2RAD, false);
+    CameraPitch(GetCameraRef(), -_rotation.y*DEG2RAD, false, false, false);
+    CameraRoll(GetCameraRef(), _rotation.z*DEG2RAD);
     Rotation = _rotation;
 }
 
@@ -68,12 +76,23 @@ float CameraComponent::GetFOV()
 
 void CameraComponent::SetForward(Vector3 _forward)
 {
+
     Forward = _forward;
 }
 
 Vector3 CameraComponent::GetForward()
 {
     return Forward;
+}
+
+void CameraComponent::SetLookAtMatrix(Matrix mat)
+{
+    LookRotMatrix = mat;
+}
+
+Matrix CameraComponent::GetLookAtMatrix()
+{
+    return MatrixLookAt(GetPosition(), GetTarget(), GetUp());
 }
 
 void CameraComponent::SetRotationalVelocity(Vector3 _velocity)
@@ -95,6 +114,11 @@ void CameraComponent::SetCamera(Camera3D _camera)
 Camera3D CameraComponent::GetCamera()
 {
     return ViewCamera;
+}
+
+Camera * CameraComponent::GetCameraRef()
+{
+    return &ViewCamera;
 }
 
 void CameraComponent::OnCreate()
